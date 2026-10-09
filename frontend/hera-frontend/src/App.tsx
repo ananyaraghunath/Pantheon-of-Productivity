@@ -29,7 +29,7 @@ const AppLayout: React.FC = () => {
       <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Link to="/" className="text-xl font-serif font-bold text-slate-800 dark:text-slate-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-            Pantheon of Productivity
+            Parthenon of Productivity
           </Link>
           <div className="flex items-center gap-4">
             <span className="text-slate-600 dark:text-slate-400 hidden sm:block">Welcome, {user?.name || 'Mortal'}</span>

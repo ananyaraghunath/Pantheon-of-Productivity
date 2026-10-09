@@ -26,3 +26,16 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Google credentials
+**/calendar_credentials.json
+**/client_secret_*.json
+
+# Dependencies and builds
+node_modules/
+dist/

@@ -83,7 +83,7 @@ const LoginPage: React.FC = () => {
     }}>
       <div className="max-w-md w-full bg-slate-800/40 backdrop-blur-sm rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden">
         <div className="p-8">
-          <h1 className="text-4xl font-serif font-bold text-white text-center mb-2">Pantheon of Productivity</h1>
+          <h1 className="text-4xl font-serif font-bold text-white text-center mb-2">Parthenon of Productivity</h1>
           <p className="text-slate-400 text-center mb-8">Enter the realm of the gods</p>
 
           <div className="flex border-b border-slate-700 mb-6">

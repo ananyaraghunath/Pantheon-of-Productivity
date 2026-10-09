@@ -1,44 +1,41 @@
-// // server.js
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const fs = require("fs");
 
-// const express = require('express');
-// const cors = require('cors');
-// const path = require('path');
-// const fs = require('fs');
+const app = express();
+const PORT = process.env.PORT || 5001;
 
-// const app = express();
-// const PORT = 5001; // Ensure this matches your frontend's API calls
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-// // --- Middleware ---
-// // Allows cross-origin requests from your frontend
-// app.use(cors()); 
-// app.use(express.json());
+// API endpoint for Muses music
+app.get("/api/music", (req, res) => {
+  const filePath = path.join(
+    __dirname,
+    "..",
+    "pantheon-backend",
+    "data",
+    "muses-music.json",
+  );
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading JSON file:", err);
+      return res.status(500).send("Server Error");
+    }
 
-// // --- API Endpoint (Route) ---
-// // GET /api/music: Serves the Muses music playlist
-// app.get('/api/music', (req, res) => {
-  
-//   const filePath = path.join(__dirname, 'data', 'muses-music.json');
+    try {
+      const musicData = JSON.parse(data);
+      res.json(musicData);
+    } catch (parseErr) {
+      console.error("Error parsing JSON:", parseErr);
+      res.status(500).send("Invalid JSON format");
+    }
+  });
+});
 
-//   // Read the JSON file
-//   fs.readFile(filePath, 'utf8', (err, data) => {
-//     if (err) {
-//       // If there's an error (e.g., file not found), send a 500 status.
-//       console.error('Error reading JSON file:', err);
-//       return res.status(500).send('Server Error');
-//     }
-//     try {
-//       // Parse the JSON data and send it as a response.
-//       const musicData = JSON.parse(data);
-//       res.json(musicData);
-//     } catch (parseErr) {
-//       // If the JSON is invalid, send a 500 status.
-//       console.error('Error parsing JSON:', parseErr);
-//       res.status(500).send('Invalid JSON format');
-//     }
-//   });
-// });
-
-// // --- Start the Server ---
-// app.listen(PORT, () => {
-//   console.log(`Muses backend is running on http://localhost:${PORT}`);
-// });
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Muses backend running on http://localhost:${PORT}`);
+});
